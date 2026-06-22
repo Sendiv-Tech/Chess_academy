@@ -101,7 +101,7 @@
         <div class="gallery-inner"><img src="campus4.jpeg" alt="Tournament Area" loading="lazy"></div>
         <div class="gallery-overlay">
           <div class="gallery-overlay-text">Tournament Area<br><span style="font-weight:400;letter-spacing:.03em;text-transform:none;font-size:.68rem;color:var(--ivory-dim)">Live tournament play</span></div>
-          <span class="gallery-expand-hint" aria-hidden="true">⛶</span>
+          <span class="gallery-expand-hint" aria-hidden="true"></span>
         </div>
       </div>
 
@@ -412,40 +412,7 @@
 
 <script src="script.js"></script>
 
-  <!-- ═══════════════════════════════════════════════════════════
-     GALLERY LIGHTBOX HTML
-     Lives at the root of <body> so it's outside all stacking
-     contexts and can truly be fullscreen on every device.
-     ═══════════════════════════════════════════════════════════ -->
-<div class="gallery-lightbox" id="galleryLightbox"
-     role="dialog" aria-modal="true" aria-label="Image viewer" tabindex="-1">
-
-  <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
-
-  <div class="lightbox-panel" role="document">
-    <!-- Close -->
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">✕</button>
-
-    <!-- Prev / Next arrows (hidden on small mobile, used on tablet+) -->
-    <button class="lightbox-btn prev" id="lightboxPrev" aria-label="Previous image">‹</button>
-    <button class="lightbox-btn next" id="lightboxNext" aria-label="Next image">›</button>
-
-    <!-- Main image -->
-    <div class="lightbox-img-wrap" id="lightboxImgWrap">
-      <img id="lightboxImg" src="" alt="" draggable="false" />
-    </div>
-
-    <!-- Caption + counter -->
-    <div class="lightbox-caption">
-      <span class="lightbox-caption-text" id="lightboxCaption"></span>
-      <span class="lightbox-counter"      id="lightboxCounter"></span>
-    </div>
-
-    <!-- Thumbnail strip -->
-    <div class="lightbox-thumbs" id="lightboxThumbs" role="tablist" aria-label="Image thumbnails"></div>
-  </div>
-</div>
-
+ 
 
 <script>
 /* ═══════════════════════════════════════════════════════════
