@@ -456,7 +456,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: .75rem;
 }
 .piece-rating .pr-piece {
-  font-size: 45px;
+  font-size: 1.15rem;
   line-height: 1;
   font-family: serif;
   color: rgba(235,236,208,.18);
@@ -466,7 +466,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--gold);
   text-shadow: 0 0 12px rgba(235,236,208,.28);
 }
-.piece-rating.lg .pr-piece { font-size: 40px; }
+.piece-rating.lg .pr-piece { font-size: 1.6rem; }
 .piece-rating-label {
   font-size: .72rem;
   font-weight: 500;
@@ -762,17 +762,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .delay-3 { transition-delay: .3s; } .delay-4 { transition-delay: .4s; }
 
 /* ── RESPONSIVE ──────────────────────────────────────────── */
-/* Nav switches to the hamburger menu earlier than the general
-   layout breakpoints below — the full logo + 6 links + Join Now
-   button need ~1150px of breathing room, so waiting until 768px
-   left a "dead zone" where the desktop nav had no space and
-   overlapped or got pushed off-screen on narrower laptop windows. */
-@media (max-width: 1140px) {
-  .nav-menu { display: none; }
-  .nav-cta { display: none; }
-  .hamburger { display: flex; }
-  .mobile-nav { display: flex; }
-}
 @media (max-width: 1024px) {
   .grid-3 { grid-template-columns: 1fr 1fr; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
@@ -786,10 +775,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .grid-3 { grid-template-columns: 1fr; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .nav-menu { display: none; }
-  .nav-cta { display: none; }
   .hamburger { display: flex; }
   .mobile-nav { display: flex; }
   .piece-field .piece:nth-child(odd) { display: none; } /* halve piece count on mobile for perf */
+  .hero { display: flex; flex-direction: column; justify-content: flex-start; padding-bottom: 2.5rem; }
+  .hero-stats { position: relative; bottom: auto; left: auto; right: auto; margin-top: 2.5rem; }
   .hero-stats-inner { flex-wrap: wrap; gap: 1.5rem; }
   .why-grid { grid-template-columns: 1fr; }
   .testimonial-card { flex: 0 0 calc(100% - 1.5rem); }
@@ -816,6 +806,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .gallery-grid { grid-template-columns: 1fr; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero-stats-inner { grid-template-columns: 1fr 1fr; display: grid; gap: 1.2rem; }
+  .hero-stat-num { font-size: 1.8rem; }
   .facilities-grid { grid-template-columns: 1fr; }
   .board-3d-stage { perspective: 500px; }
   .nav-logo-icon { width: 38px; height: 38px; }
@@ -830,6 +822,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .piece-field { display: none; }
   .board-3d-plane { animation: none; }
 }
+
 
 img.hero1-logo {
     margin: -423px 0 0 746px;
