@@ -829,3 +829,22 @@ img.hero1-logo {
     width: 340px;
     height: 423px;
 }
+
+
+
+.footer-copy {
+  font-size: 13px;
+  color: #aaa;
+  margin: 4px 0;
+}
+
+.footer-copy a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-copy a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
