@@ -762,6 +762,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .delay-3 { transition-delay: .3s; } .delay-4 { transition-delay: .4s; }
 
 /* ── RESPONSIVE ──────────────────────────────────────────── */
+/* Nav switches to the hamburger menu earlier than the general
+   layout breakpoints below — the full logo + 6 links + Join Now
+   button need ~1150px of breathing room, so waiting until 768px
+   left a "dead zone" where the desktop nav had no space and
+   overlapped or got pushed off-screen on narrower laptop windows. */
+@media (max-width: 1140px) {
+  .nav-menu { display: none; }
+  .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .mobile-nav { display: flex; }
+}
 @media (max-width: 1024px) {
   .grid-3 { grid-template-columns: 1fr 1fr; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
