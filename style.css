@@ -854,3 +854,16 @@ img.hero1-logo {
   color: #fff;
   text-decoration: underline;
 }
+
+
+.hero-stats {
+    margin: 0 0 -26px 0;
+}
+
+section.hero {
+    margin: 110px 0 0 0;
+}
+
+.container {
+    margin: 10px auto;
+}
