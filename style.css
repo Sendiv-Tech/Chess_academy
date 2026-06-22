@@ -34,7 +34,6 @@
   --r-sm: 6px; --r-md: 12px; --r-lg: 20px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
-
 /* â”€â”€ RESET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -857,13 +856,13 @@ img.hero1-logo {
 
 
 .hero-stats {
-    margin: 0 0 -26px 0;
+    margin: 0 0 -20px 0;
 }
 
 section.hero {
-    margin: 110px 0 0 0;
+    margin: 100px 0 0 0;
 }
 
 .container {
-    margin: 5px auto;
+    margin: 2px auto;
 }
