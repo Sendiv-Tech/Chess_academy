@@ -1,26 +1,27 @@
+
 /* ============================================================
-   BRITZENIX CHESS ACADEMY — style.css
-   Palette: Light Squares #EBECD0 (cream) · Dark Squares #5A7A9A (slate blue)
-   Background: deep navy derived from #5A7A9A · Text: cream #EBECD0
+   BRITZENIX CHESS ACADEMY â€” style.css
+   Palette: Light Squares #EBECD0 (cream) Â· Dark Squares #5A7A9A (slate blue)
+   Background: deep navy derived from #5A7A9A Â· Text: cream #EBECD0
    Display: Cormorant Garamond  Body: Inter
    Motion: 3D perspective chessboard + drifting/orbiting piece field
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
-/* ── TOKENS ──────────────────────────────────────────────── */
+/* â”€â”€ TOKENS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root {
-  /* Dark backgrounds — deep navy derived from the slate blue square colour */
+  /* Dark backgrounds â€” deep navy derived from the slate blue square colour */
   --void:       #07111E;   /* deepest background */
   --board-dark: #0D1C2E;   /* section alternates */
   --surface:    #142338;   /* cards, navbars scrolled */
   --surface-2:  #1C3050;   /* hover state surfaces */
 
-  /* Accent — the two actual board square colours */
-  --gold:       #EBECD0;   /* cream (light squares) — primary accent */
+  /* Accent â€” the two actual board square colours */
+  --gold:       #EBECD0;   /* cream (light squares) â€” primary accent */
   --gold-dim:   #B8BAA0;   /* muted cream */
   --gold-glow:  rgba(235, 236, 208, 0.18);
-  --slate:      #5A7A9A;   /* slate blue (dark squares) — secondary accent */
+  --slate:      #5A7A9A;   /* slate blue (dark squares) â€” secondary accent */
   --slate-dim:  #3D5770;   /* deeper slate */
   --slate-glow: rgba(90, 122, 154, 0.25);
 
@@ -34,7 +35,7 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── RESET ───────────────────────────────────────────────── */
+/* â”€â”€ RESET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -50,7 +51,7 @@ a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-/* ── FLOATING CHESS-PIECE FIELD (global, behind every page) ─
+/* â”€â”€ FLOATING CHESS-PIECE FIELD (global, behind every page) â”€
    Each piece is randomly assigned cream (#EBECD0) or slate-blue (#5A7A9A)
    colour at spawn time via inline CSS (see script.js).
    For children's attraction: pieces also pulse in size and bounce
@@ -87,7 +88,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   from { rotate: 0deg; }
   to   { rotate: 360deg; }
 }
-/* Subtle size pulse — makes pieces feel alive and draws children's eyes */
+/* Subtle size pulse â€” makes pieces feel alive and draws children's eyes */
 @keyframes piecePulse {
   0%, 100% { scale: 1; }
   50%      { scale: 1.18; }
@@ -95,7 +96,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ensure content sits above the piece field */
 .navbar, .hero, .page-hero, .section, .cta-banner, .footer, .mobile-nav { position: relative; z-index: 1; }
 
-/* ── TYPOGRAPHY ──────────────────────────────────────────── */
+/* â”€â”€ TYPOGRAPHY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .display-xl {
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 7vw, 5.5rem);
@@ -123,7 +124,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--gold);
 }
 
-/* ── LAYOUT ──────────────────────────────────────────────── */
+/* â”€â”€ LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 3rem); }
 .section { padding: clamp(4rem, 9vw, 7.5rem) 0; }
 .grid-2  { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
@@ -134,7 +135,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .gold-line { width: 48px; height: 2px; background: var(--gold); margin: 1rem 0 1.5rem; }
 .gold-line.center { margin: 1rem auto 1.5rem; }
 
-/* ── BUTTONS ─────────────────────────────────────────────── */
+/* â”€â”€ BUTTONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .btn {
   display: inline-flex; align-items: center; gap: .5rem;
   padding: .85rem 2rem; border-radius: var(--r-sm);
@@ -149,7 +150,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .btn-ghost { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: .7rem 1.6rem; }
 .btn-ghost:hover { background: var(--gold); color: var(--void); box-shadow: 0 0 25px var(--gold-glow); transform: translateY(-2px); }
 
-/* ── NAVBAR ──────────────────────────────────────────────── */
+/* â”€â”€ NAVBAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 1000; padding: 1.2rem 0;
@@ -165,7 +166,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .navbar-inner { display: flex; align-items: center; justify-content: space-between; }
 .nav-logo { display: flex; align-items: center; gap: .75rem; }
 
-/* Logo icon — sized to comfortably show the uploaded crest artwork.
+/* Logo icon â€” sized to comfortably show the uploaded crest artwork.
    A soft dark circle sits behind it so the white/silver knight reads
    clearly against the navbar at any scroll state, instead of being
    cropped into a tiny tinted box. */
@@ -220,9 +221,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mobile-nav.open { opacity: 1; pointer-events: all; }
 .mobile-nav .nav-link { font-size: 1.5rem; letter-spacing: .15em; }
 
-/* ── WHATSAPP FLOATING BUTTON ────────────────────────────────
+/* â”€â”€ WHATSAPP FLOATING BUTTON â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Fixed bottom-right, stays visible while scrolling on every page
-   it's included on. Uses WhatsApp's brand green deliberately —
+   it's included on. Uses WhatsApp's brand green deliberately â€”
    it's the one spot on this monochrome site where a recognisable
    brand colour helps, since it signals "this opens WhatsApp"
    instantly to visitors. */
@@ -266,13 +267,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transform: translateY(-50%) translateX(0);
 }
 
-/* ── HERO ────────────────────────────────────────────────── */
+/* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .hero {
   min-height: 100vh; position: relative;
   display: flex; align-items: center; overflow: hidden;
 }
 
-/* 3D perspective chessboard floor — tilts back into the screen and
+/* 3D perspective chessboard floor â€” tilts back into the screen and
    drifts slowly, like looking down a tournament hall of boards. */
 .board-3d-stage {
   position: absolute; inset: 0;
@@ -280,8 +281,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   perspective: 900px;
   perspective-origin: 50% 30%;
 }
-/* The board plane now uses the ACTUAL chess square colours — cream and
-   slate blue — so when it's revealed through the dark overlay it reads
+/* The board plane now uses the ACTUAL chess square colours â€” cream and
+   slate blue â€” so when it's revealed through the dark overlay it reads
    unmistakably as a real chessboard receding into the scene.
    Two scale of squares: a 140px checker (the board tiles) and a
    70px grid overlay (the inner line detail). Both drift together. */
@@ -333,7 +334,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-stat-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 300; color: var(--gold); line-height: 1; }
 .hero-stat-label { font-size: .72rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ivory-dim); margin-top: .3rem; }
 
-/* ── ABOUT PREVIEW ───────────────────────────────────────── */
+/* â”€â”€ ABOUT PREVIEW â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .about-preview { background: var(--board-dark); }
 .about-preview .grid-2 { gap: 4rem; }
 .about-image-frame {
@@ -372,7 +373,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-display); font-size: 1.1rem; font-style: italic; color: var(--ivory-dim); line-height: 1.6;
 }
 
-/* ── PROGRAMS ────────────────────────────────────────────── */
+/* â”€â”€ PROGRAMS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .programs { background: var(--void); }
 .program-card {
   background: var(--surface); border: 1px solid rgba(235,236,208,.07);
@@ -402,7 +403,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .program-desc { font-size: .9rem; color: var(--ivory-dim); line-height: 1.7; margin-bottom: 1.5rem; }
 .program-features { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 2rem; }
 .program-feature { display: flex; align-items: center; gap: .6rem; font-size: .85rem; color: var(--ivory-dim); }
-.program-feature::before { content: '♟'; color: var(--gold); font-size: .75rem; flex-shrink: 0; }
+.program-feature::before { content: 'â™Ÿ'; color: var(--gold); font-size: .75rem; flex-shrink: 0; }
 .program-card.featured { background: linear-gradient(145deg, #0D1C2E 0%, #050E1A 100%); border-color: rgba(235,236,208,.4); }
 .program-card.featured::before { transform: scaleX(1); }
 .featured-badge {
@@ -412,7 +413,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: .25rem .65rem; border-radius: 100px;
 }
 
-/* ── WHY CHOOSE US ───────────────────────────────────────── */
+/* â”€â”€ WHY CHOOSE US â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .why { background: var(--board-dark); }
 .why-grid {
   display: grid; grid-template-columns: repeat(2, 1fr);
@@ -426,7 +427,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .why-item-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; color: var(--ivory); margin-bottom: .5rem; }
 .why-item-desc { font-size: .88rem; color: var(--ivory-dim); line-height: 1.7; }
 
-/* ── TESTIMONIALS ────────────────────────────────────────── */
+/* â”€â”€ TESTIMONIALS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .testimonials { background: var(--void); overflow: hidden; }
 .testimonial-track-wrap { overflow: hidden; }
 .testimonial-track { display: flex; gap: 1.5rem; transition: transform .55s var(--ease-out); }
@@ -446,8 +447,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .testi-name { font-weight: 500; font-size: .9rem; color: var(--ivory); }
 .testi-role { font-size: .78rem; color: var(--ivory-dim); }
 
-/* ── PIECE RATING (chess-piece alternative to star ratings) ──
-   Escalating piece value per rank: pawn → knight → bishop → rook → queen.
+/* â”€â”€ PIECE RATING (chess-piece alternative to star ratings) â”€â”€
+   Escalating piece value per rank: pawn â†’ knight â†’ bishop â†’ rook â†’ queen.
    Filled/bright pieces up to the rating; remaining slots sit dim. */
 .piece-rating {
   display: inline-flex;
@@ -456,7 +457,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: .75rem;
 }
 .piece-rating .pr-piece {
-  font-size: 1.15rem;
+  font-size: 45px;
   line-height: 1;
   font-family: serif;
   color: rgba(235,236,208,.18);
@@ -466,7 +467,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--gold);
   text-shadow: 0 0 12px rgba(235,236,208,.28);
 }
-.piece-rating.lg .pr-piece { font-size: 1.6rem; }
+.piece-rating.lg .pr-piece { font-size: 40px; }
 .piece-rating-label {
   font-size: .72rem;
   font-weight: 500;
@@ -495,28 +496,28 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .slider-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(235,236,208,.22); cursor: pointer; transition: all .3s; }
 .slider-dot.active { background: var(--gold); width: 20px; border-radius: 3px; }
 
-/* ── CTA BANNER ──────────────────────────────────────────── */
+/* â”€â”€ CTA BANNER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .cta-banner {
   background: linear-gradient(135deg, #161616 0%, #07111E 100%);
   border-top: 1px solid rgba(235,236,208,.14); border-bottom: 1px solid rgba(235,236,208,.14);
   padding: 5rem 0; text-align: center; position: relative; overflow: hidden;
 }
 .cta-banner::before {
-  content: '♔'; position: absolute; font-size: 40vw;
+  content: 'â™”'; position: absolute; font-size: 40vw;
   top: 50%; left: 50%; transform: translate(-50%, -50%);
   color: rgba(235,236,208,.03); pointer-events: none; font-family: serif;
 }
 .cta-banner .display-md { margin: .75rem 0 .5rem; }
 .cta-banner p { color: var(--ivory-dim); margin-bottom: 2rem; font-size: 1rem; }
 
-/* ── SECTION HEADER ──────────────────────────────────────── */
+/* â”€â”€ SECTION HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .section-header { margin-bottom: 3.5rem; }
 .section-header.center { text-align: center; }
 .section-header .display-lg { margin-top: .5rem; margin-bottom: 1rem; }
 .section-header p { font-size: 1rem; color: var(--ivory-dim); max-width: 560px; line-height: 1.75; }
 .section-header.center p { margin: 0 auto; }
 
-/* ── PAGE HERO ───────────────────────────────────────────── */
+/* â”€â”€ PAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .page-hero {
   height: 50vh; min-height: 380px; position: relative;
   display: flex; align-items: flex-end; padding-bottom: 4rem; overflow: hidden;
@@ -534,7 +535,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .page-hero-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
 
-/* ── ABOUT PAGE ──────────────────────────────────────────── */
+/* â”€â”€ ABOUT PAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .story-section { background: var(--board-dark); }
 .story-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
 .story-card { background: var(--surface); border-radius: var(--r-lg); padding: 2rem; border: 1px solid rgba(235,236,208,.07); }
@@ -572,7 +573,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .stat-num { font-family: var(--font-display); font-size: clamp(2.5rem,4vw,4rem); font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: .5rem; }
 .stat-label { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ivory-dim); }
 
-/* ── CAMPUS PAGE ─────────────────────────────────────────── */
+/* â”€â”€ CAMPUS PAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gallery-section { background: var(--void); }
 .gallery-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -644,7 +645,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .badge-open { background: rgba(52,211,153,.12); color: #34D399; }
 .badge-full { background: rgba(239,68,68,.12); color: #EF4444; }
 
-/* ── CONTACT PAGE ────────────────────────────────────────── */
+/* â”€â”€ CONTACT PAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .contact-section { background: var(--void); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: flex-start; }
 .contact-detail { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.75rem; }
@@ -682,7 +683,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .form-success-title { font-family: var(--font-display); font-size: 1.5rem; color: var(--ivory); margin-bottom: .5rem; }
 .form-success-text { font-size: .9rem; color: var(--ivory-dim); }
 
-/* ── REVIEWS PAGE ────────────────────────────────────────── */
+/* â”€â”€ REVIEWS PAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .reviews-summary { background: var(--board-dark); }
 .reviews-summary-grid {
   display: grid;
@@ -751,7 +752,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer-copy { font-size: .8rem; color: rgba(143,168,191,.55); }
 .footer-copy span { color: var(--gold); }
 
-/* ── SCROLL REVEAL ───────────────────────────────────────── */
+/* â”€â”€ SCROLL REVEAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
@@ -761,7 +762,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .delay-1 { transition-delay: .1s; } .delay-2 { transition-delay: .2s; }
 .delay-3 { transition-delay: .3s; } .delay-4 { transition-delay: .4s; }
 
-/* ── RESPONSIVE ──────────────────────────────────────────── */
+/* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Nav switches to the hamburger menu earlier than the general
+   layout breakpoints below â€” the full logo + 6 links + Join Now
+   button need ~1150px of breathing room, so waiting until 768px
+   left a "dead zone" where the desktop nav had no space and
+   overlapped or got pushed off-screen on narrower laptop windows. */
+@media (max-width: 1140px) {
+  .nav-menu { display: none; }
+  .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .mobile-nav { display: flex; }
+}
 @media (max-width: 1024px) {
   .grid-3 { grid-template-columns: 1fr 1fr; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
@@ -775,11 +787,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .grid-3 { grid-template-columns: 1fr; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .nav-menu { display: none; }
+  .nav-cta { display: none; }
   .hamburger { display: flex; }
   .mobile-nav { display: flex; }
   .piece-field .piece:nth-child(odd) { display: none; } /* halve piece count on mobile for perf */
-  .hero { display: flex; flex-direction: column; justify-content: flex-start; padding-bottom: 2.5rem; }
-  .hero-stats { position: relative; bottom: auto; left: auto; right: auto; margin-top: 2.5rem; }
   .hero-stats-inner { flex-wrap: wrap; gap: 1.5rem; }
   .why-grid { grid-template-columns: 1fr; }
   .testimonial-card { flex: 0 0 calc(100% - 1.5rem); }
@@ -806,8 +817,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .gallery-grid { grid-template-columns: 1fr; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; justify-content: center; }
-  .hero-stats-inner { grid-template-columns: 1fr 1fr; display: grid; gap: 1.2rem; }
-  .hero-stat-num { font-size: 1.8rem; }
   .facilities-grid { grid-template-columns: 1fr; }
   .board-3d-stage { perspective: 500px; }
   .nav-logo-icon { width: 38px; height: 38px; }
@@ -823,13 +832,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .board-3d-plane { animation: none; }
 }
 
-
 img.hero1-logo {
     margin: -423px 0 0 746px;
     width: 340px;
     height: 423px;
 }
-
 
 .footer-copy {
   font-size: 13px;
