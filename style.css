@@ -574,322 +574,42 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* ── CAMPUS PAGE ─────────────────────────────────────────── */
 .gallery-section { background: var(--void); }
-/* ═══════════════════════════════════════════════════════════
-   GALLERY — Hover popup + Click/Tap lightbox
-   Desktop: hovering a tile scales it out of the grid (CSS only).
-   Mobile/Tablet: hover doesn't exist — tapping opens lightbox.
-   The lightbox is fully cross-device: touch swipe, keyboard nav,
-   proper safe-area insets, correct viewport heights on iOS, no
-   scroll-bleed, and focus-trap for accessibility.
-   ═══════════════════════════════════════════════════════════ */
-.gallery-section { overflow: hidden; } /* prevent popup from causing page scroll */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 2rem;
-  /* overflow visible so desktop popup can scale above grid */
-  overflow: visible;
-  position: relative;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto; gap: 1rem; margin-top: 2rem;
 }
-.gallery-item {
-  border-radius: var(--r-md);
-  overflow: hidden;
-  background: var(--surface);
-  position: relative;
-  aspect-ratio: 4/3;
-  cursor: zoom-in;
-  z-index: 1;
-  /* transition for desktop popup — z-index delays reset until scale-down is done */
-  transition:
-    transform .36s var(--ease-out),
-    box-shadow .36s var(--ease-out),
-    z-index 0s .36s;
-}
+.gallery-item { border-radius: var(--r-md); overflow: hidden; background: var(--surface); position: relative; aspect-ratio: 4/3; cursor: pointer; }
 .gallery-item.tall { grid-row: span 2; aspect-ratio: auto; }
 .gallery-item.wide { grid-column: span 2; }
-
-/* ── Desktop hover popup ── */
-@media (hover: hover) and (pointer: fine) {
-  .gallery-item:hover {
-    transform: scale(1.38);
-    z-index: 20;
-    transition:
-      transform .36s var(--ease-out),
-      box-shadow .36s var(--ease-out),
-      z-index 0s 0s;
-    box-shadow:
-      0 24px 60px rgba(0,8,20,.82),
-      0 0 0 3px var(--slate),
-      0 0 40px rgba(90,122,154,.4);
-  }
-  .gallery-item:hover .gallery-overlay { opacity: 1; transform: translateY(0); }
-  .gallery-item:hover .gallery-inner img { filter: brightness(1.1) saturate(1.15); }
-}
-
-/* ── Touch-friendly active state (mobile tap feedback) ── */
-@media (hover: none) {
-  .gallery-item:active { opacity: .85; transform: scale(.97); }
-}
-
 .gallery-inner {
   width: 100%; height: 100%; min-height: 180px;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: center; font-size: 4rem;
   background: repeating-conic-gradient(#0D1C2E 0% 25%, #091523 0% 50%);
-  background-size: 40px 40px;
+  background-size: 40px 40px; transition: transform .5s var(--ease-out);
 }
+/* Real uploaded photos: crop to fill their frame regardless of the
+   source image's own orientation (portrait phone shots vs landscape),
+   so every gallery tile reads as a consistent, intentional grid
+   instead of stretched or letterboxed photos. */
 .gallery-inner img {
   width: 100%; height: 100%;
-  object-fit: cover; object-position: center; display: block;
-  transition: filter .4s;
-}
-/* Overlay: slim bottom gradient with caption — slides up on hover */
-.gallery-overlay {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: .65rem .9rem;
-  background: linear-gradient(to top, rgba(7,17,30,.92) 0%, transparent 100%);
-  display: flex; align-items: flex-end; justify-content: space-between;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .28s, transform .28s var(--ease-out);
-  pointer-events: none;
-}
-.gallery-overlay-text {
-  font-size: .75rem; font-weight: 600; letter-spacing: .07em;
-  text-transform: uppercase; color: var(--gold); line-height: 1.35;
-}
-.gallery-expand-hint {
-  font-size: 1.1rem; color: rgba(235,236,208,.7); flex-shrink: 0; margin-left: .5rem;
-}
-
-/* ════════════════════════════════════════════════════════════
-   LIGHTBOX — cross-device modal
-   • Desktop:   keyboard nav (← → ESC), prev/next arrows, thumbnails
-   • Tablet:    same + touch swipe
-   • Mobile:    full-viewport, safe-area aware, swipe to navigate,
-                no tiny tap targets, bottom thumb strip scrollable
-   ════════════════════════════════════════════════════════════ */
-.gallery-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 9500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* iOS safe area padding */
-  padding: env(safe-area-inset-top, 1rem)
-           env(safe-area-inset-right, 1rem)
-           env(safe-area-inset-bottom, 1rem)
-           env(safe-area-inset-left, 1rem);
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition: opacity .3s var(--ease-out), visibility 0s .3s;
-}
-.gallery-lightbox.open {
-  opacity: 1;
-  pointer-events: all;
-  visibility: visible;
-  transition: opacity .3s var(--ease-out), visibility 0s 0s;
-}
-
-/* Backdrop */
-.lightbox-backdrop {
-  position: absolute; inset: 0;
-  background: rgba(7,17,30,.94);
-  backdrop-filter: blur(16px) saturate(.7);
-  -webkit-backdrop-filter: blur(16px) saturate(.7);
-}
-
-/* Panel — responsive sizing */
-.lightbox-panel {
-  position: relative;
-  z-index: 1;
-  width: min(92vw, 1000px);
-  max-height: calc(100vh - 2rem);
-  max-height: calc(100dvh - 2rem); /* dynamic viewport height — iOS address bar */
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background: var(--surface);
-  box-shadow: 0 40px 100px rgba(0,8,20,.85), 0 0 0 1px rgba(235,236,208,.1);
-  transform: scale(.88) translateY(24px);
-  transition: transform .38s var(--ease-out);
-  /* Prevent panel being taller than viewport on small phones */
-  contain: layout;
-}
-.gallery-lightbox.open .lightbox-panel {
-  transform: scale(1) translateY(0);
-}
-
-/* Image area — uses dvh so iOS doesn't clip behind address bar */
-.lightbox-img-wrap {
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-  background: #050E1A;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.lightbox-img-wrap img {
-  max-width: 100%;
-  max-height: 56vh;
-  max-height: 56dvh;
-  width: auto; height: auto;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   display: block;
-  transition: opacity .25s, transform .35s var(--ease-out);
-  user-select: none;
-  -webkit-user-drag: none;
 }
-.lightbox-img-wrap img.transitioning {
-  opacity: 0;
-  transform: scale(.95);
-}
-
-/* Caption bar */
-.lightbox-caption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .75rem;
-  padding: .7rem 1.1rem;
-  border-top: 1px solid rgba(235,236,208,.07);
-  flex-shrink: 0;
-  min-height: 0;
-}
-.lightbox-caption-text {
-  font-size: .8rem; font-weight: 600; letter-spacing: .06em;
-  text-transform: uppercase; color: var(--gold);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.lightbox-counter {
-  font-size: .75rem; color: var(--ivory-dim); flex-shrink: 0; white-space: nowrap;
-}
-
-/* Thumbnail strip */
-.lightbox-thumbs {
-  display: flex;
-  gap: .45rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: .6rem 1rem;
-  background: var(--board-dark);
-  border-top: 1px solid rgba(235,236,208,.05);
-  flex-shrink: 0;
-  /* smooth iOS momentum scroll */
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: var(--slate) transparent;
-  /* ensure minimum tap target height */
-  min-height: 60px;
-}
-.lightbox-thumb {
-  flex-shrink: 0;
-  width: 54px; height: 42px;
-  border-radius: 5px;
-  overflow: hidden;
-  border: 2px solid transparent;
-  cursor: pointer;
-  opacity: .5;
-  transition: all .2s;
-  /* minimum 44×44 tap target per Apple HIG */
-  -webkit-tap-highlight-color: transparent;
-}
-.lightbox-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.lightbox-thumb.active { border-color: var(--gold); opacity: 1; }
-.lightbox-thumb:hover:not(.active),
-.lightbox-thumb:focus:not(.active)  { opacity: .82; border-color: var(--slate); outline: none; }
-
-/* Nav arrows — hidden on small mobile, shown on tablet+ */
-.lightbox-btn {
-  position: absolute;
-  top: 50%;
-  z-index: 2;
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  background: rgba(20,35,56,.88);
-  border: 1px solid rgba(235,236,208,.22);
-  color: var(--ivory);
-  font-size: 1.3rem; line-height: 1;
+.gallery-item:hover .gallery-inner { transform: scale(1.06); }
+.gallery-overlay {
+  position: absolute; inset: 0; background: rgba(7,17,30,.8);
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: all .22s var(--ease-out);
-  transform: translateY(-50%);
-  -webkit-tap-highlight-color: transparent;
+  opacity: 0; transition: opacity .3s;
 }
-.lightbox-btn:hover, .lightbox-btn:focus {
-  background: var(--slate);
-  border-color: var(--slate);
-  box-shadow: 0 0 20px rgba(90,122,154,.4);
-  outline: none;
-  transform: translateY(-50%) scale(1.1);
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay-text { font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); text-align: center; padding: 1rem; }
+.facilities-section { background: var(--board-dark); }
+.facility-card {
+  background: var(--surface); border: 1px solid rgba(235,236,208,.07);
+  border-radius: var(--r-lg); padding: 2rem; transition: all .35s var(--ease-out);
 }
-.lightbox-btn.prev { left: -26px; }
-.lightbox-btn.next { right: -26px; }
-
-/* Close button — large enough to tap on mobile */
-.lightbox-close {
-  position: absolute;
-  top: -18px; right: -18px;
-  z-index: 3;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: var(--gold);
-  color: var(--void);
-  border: none;
-  font-size: 1.1rem; font-weight: 700; line-height: 1;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 18px rgba(0,8,20,.55);
-  transition: all .22s var(--ease-out);
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-.lightbox-close:hover, .lightbox-close:focus {
-  background: #F5F6DE;
-  transform: scale(1.1) rotate(90deg);
-  outline: none;
-}
-
-/* ── Mobile: full-width panel, larger close, hide side arrows ── */
-@media (max-width: 600px) {
-  .gallery-lightbox { padding: .5rem; }
-  .lightbox-panel {
-    width: 100%;
-    max-height: 100dvh;
-    border-radius: var(--r-md);
-  }
-  .lightbox-img-wrap img {
-    max-height: 50dvh;
-  }
-  /* Side arrows replaced by swipe — hide them */
-  .lightbox-btn { display: none; }
-  /* Close button repositioned inside the panel on mobile */
-  .lightbox-close {
-    top: .5rem; right: .5rem;
-    width: 40px; height: 40px;
-    font-size: 1rem;
-    position: fixed; /* stays in corner even if panel scrolls */
-    z-index: 9600;
-  }
-  .lightbox-caption { padding: .55rem .8rem; }
-  .lightbox-caption-text { font-size: .72rem; }
-  .lightbox-thumbs { min-height: 56px; padding: .5rem .8rem; }
-  .lightbox-thumb { width: 48px; height: 38px; }
-}
-/* ── Tablet ── */
-@media (min-width: 601px) and (max-width: 900px) {
-  .lightbox-btn { display: flex; }
-  .lightbox-btn.prev { left: -20px; }
-  .lightbox-btn.next { right: -20px; }
-  .lightbox-panel { width: min(94vw, 800px); }
-  .lightbox-img-wrap img { max-height: 52dvh; }
-}
-
 .facility-card:hover { border-color: rgba(235,236,208,.22); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,8,20,.55); }
 .facility-icon {
   font-size: 2rem; margin-bottom: 1rem;
@@ -1055,6 +775,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .grid-3 { grid-template-columns: 1fr; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .nav-menu { display: none; }
+  .nav-cta { display: none; }
   .hamburger { display: flex; }
   .mobile-nav { display: flex; }
   .piece-field .piece:nth-child(odd) { display: none; } /* halve piece count on mobile for perf */
